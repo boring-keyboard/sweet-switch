@@ -1,6 +1,6 @@
 # 安装
 
-- **第1步** 插件zip包下载地址 https://github.com/sweet-switch/bot/releases
+- **第1步** 插件zip包下载地址 [https://github.com/sweet-switch/bot/releases](https://github.com/boring-keyboard/sweet-switch/releases)
 - **第2步** 下载后解压到本地磁盘
 - **第3步** 打开chrome浏览器扩展管理页面 chrome://extensions
 - **第4步** 打开开发者模式并加载插件目录
