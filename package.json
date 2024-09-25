@@ -1,0 +1,17 @@
+{
+  "name": "sweet-switch",
+  "version": "1.0.0",
+  "description": "安装",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.271",
+    "@types/jquery": "^3.5.29"
+  }
+}
