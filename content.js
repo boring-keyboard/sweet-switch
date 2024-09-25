@@ -26,7 +26,7 @@ class ItemPage {
                 return;
             }
             stop();
-            if (!$('div[class*="purchasePanel--"] button[class*="leftBtn--"]').get(0).textContent.match(/下架/)) {
+            if (!$('div[class*="purchasePanel--"] button[class*="leftBtn--"]').get(0).textContent.match(/下架|即将/)) {
                 chrome.runtime.sendMessage({
                     type: 'hit',
                     data: {
