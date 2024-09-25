@@ -1,5 +1,7 @@
 抢购方案：多人并行探测商品链接是否上架，共享探测结果。探测到已上架自动提交购物车。
+
 QQ群交流：1002052265
+
 ### 安装
 
 - **第1步** 插件zip包下载地址 [https://github.com/sweet-switch/bot/releases](https://github.com/boring-keyboard/sweet-switch/releases)
