@@ -37,7 +37,7 @@ class ItemPage {
             } else {
                 chrome.runtime.sendMessage({
                     type: 'miss',
-                    data: document.URL 
+                    data: document.URL
                 });
                 setTimeout(() => {
                     window.location.reload();
@@ -59,6 +59,52 @@ class CartPage {
 
     run() {
         $('div[class*="btnWrap--"] div[class*="btn--"]').get(0).click();
+    }
+
+    static init() {
+        const mask = document.createElement('div');
+        document.createElement('div');
+        mask.style.position = 'fixed';
+        mask.style.top = '0';
+        mask.style.width = '200px';
+        mask.style.left = '0';
+        mask.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        mask.style.color = '#fff';
+        mask.style.padding = '5px';
+        mask.style.textAlign = 'left';
+        mask.style.fontSize = '13px';
+        mask.style.zIndex = '9999';
+        mask.id = 'boring-switch-mask';
+        document.body.appendChild(mask);
+
+        // 给提单按钮增加一个彩色流光border的动画
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .boring-switch-border {
+            animation: boring-switch-border 3s infinite;
+            border: 3px solid #f00;
+        }
+        @keyframes boring-switch-border {
+            0% {
+                border-color: #f00;
+            }
+            25% {
+                border-color: #0f0;
+            }
+            50% {
+                border-color: #00f;
+            }
+            75% {
+                border-color: #ff0;
+            }
+            100% {
+                border-color: #f00;
+            }
+        }
+        `;
+        document.head.appendChild(style);
+        const btn = $('div[class*="btnWrap--"] div[class*="btn--"]').get(0);
+        btn.classList.add('boring-switch-border');
     }
 }
 
@@ -85,6 +131,9 @@ function main() {
     if (BuyPage.match()) {
         new BuyPage().run();
     }
+    if (CartPage.match()) {
+        CartPage.init();
+    }
 }
 
 let isCartRuning = false;
@@ -99,23 +148,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     if (CartPage.match()) {
         if (request.type === 'stats') {
-            let mask = document.getElementById('boring-switch-mask');
-            if (!mask) {
-                mask = document.createElement('div');
-                mask.style.position = 'fixed';
-                mask.style.top = '0';
-                mask.style.width = '200px';
-                mask.style.left = '0';
-                mask.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                mask.style.color = '#fff';
-                mask.style.padding = '5px';
-                mask.style.textAlign = 'left';
-                mask.style.fontSize = '13px';
-                mask.style.zIndex = '9999';
-                mask.id = 'boring-switch-mask';
-                document.body.appendChild(mask);
+            const mask = document.getElementById('boring-switch-mask');
+            if (mask) {
+                mask.innerHTML = `连接:${request.data.connNum}, 过去1分钟探测次数:${request.data.freq.toFixed(0)}`;
             }
-            mask.innerHTML = `连接:${request.data.connNum}, 过去1分钟探测次数:${request.data.freq.toFixed(0)}`;
         }
     }
 });
