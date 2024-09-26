@@ -104,7 +104,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 mask = document.createElement('div');
                 mask.style.position = 'fixed';
                 mask.style.top = '0';
-                mask.style.width = '120px';
+                mask.style.width = '200px';
                 mask.style.left = '0';
                 mask.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
                 mask.style.color = '#fff';
@@ -115,7 +115,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 mask.id = 'boring-switch-mask';
                 document.body.appendChild(mask);
             }
-            mask.innerHTML = `连接:${request.data.connNum}, 频率:${request.data.freq.toFixed(2)}`;
+            mask.innerHTML = `连接:${request.data.connNum}, 过去1分钟探测次数:${request.data.freq.toFixed(0)}`;
         }
     }
 });
